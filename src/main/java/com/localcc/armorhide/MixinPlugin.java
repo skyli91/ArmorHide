@@ -18,14 +18,6 @@ public class MixinPlugin implements IMixinConfigPlugin {
         return null;
     }
 
-    @Override
-    public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if(targetClassName.endsWith("TrinketFeatureRenderer") || targetClassName.endsWith("ServerPlayNetworking")) {
-            return FabricLoader.getInstance()
-                    .isModLoaded("trinkets");
-        }
-        return true;
-    }
 
     @Override
     public void acceptTargets(Set<String> myTargets, Set<String> otherTargets) {
