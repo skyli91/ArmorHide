@@ -6,12 +6,10 @@
   "server": [
     "ServerLevelMixin",
     "ServerGamePacketListenerMixin",
-    "ServerPlayNetworkingMixin",
-    "TrinketComponentMixin"
+    "ServerPlayNetworkingMixin"
   ],
   "client": [
-    "HumanoidArmorLayerMixin",
-    "TrinketFeatureRendererMixin"
+    "HumanoidArmorLayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
