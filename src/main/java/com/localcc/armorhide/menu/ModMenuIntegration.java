@@ -42,30 +42,7 @@ public class ModMenuIntegration implements ModMenuApi {
             vanillaItems.addEntry(createVanillaEntry(entryBuilder, "gui.armorhide.legs", "legs"));
             vanillaItems.addEntry(createVanillaEntry(entryBuilder, "gui.armorhide.boots", "boots"));
 
-            var trinketGroups = ClientMod.MOD_MENU_TRINKETS.getAllTrinkets();
-            if(trinketGroups.size() > 0) {
-                var trinketsItems = builder.getOrCreateCategory(Component.translatable("gui.armorhide.trinkets"));
-                trinketGroups.forEach((groupName, trinkets) -> {
-                    var subCategory = entryBuilder.startSubCategory(Component.literal(groupName));
-                    for (var trinket : trinkets) {
-                        var itemName = trinket.groupName() + "/" + trinket.slotName() + "/" + trinket.groupOrder();
-                        var shortName = trinket.slotName() + "/" + trinket.groupOrder();
-                        subCategory.add(entryBuilder.startBooleanToggle(
-                                        Component.translatable("gui.armorhide.hide").append(" " + shortName),
-                                        ClientMod.getHiddenItems().contains(itemName))
-                                .setSaveConsumer(value -> {
-                                    if (value) {
-                                        ClientMod.addHiddenItem(itemName);
-                                    } else {
-                                        ClientMod.removeHiddenItem(itemName);
-                                    }
-                                })
-                                .setDefaultValue(false)
-                                .build());
-                    }
-                    trinketsItems.addEntry(subCategory.build());
-                });
-            }
+            
 
             builder.setSavingRunnable(() -> {
                 Minecraft.getInstance().player.displayClientMessage(Component.translatable("message.armorhide.reconnect"), false);
